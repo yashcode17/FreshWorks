@@ -5,7 +5,7 @@ path=''
 
 
 def create_directory(self,dir_path=None):
-    '''set directory path if not provided by user'''
+    '''set directory path is not provided by user'''
     if dir_path==None:
         dir_path="C:\\"
     
@@ -45,8 +45,19 @@ def add_data(self,key1,value1):
             with open(path,'r') as fp:
                 data=json.load(fp)
             data[key1]=value1
-            with open(path,'w') as fp:
-                json.dump(data,fp)   
+            '''check if we add new data, it will not cross the data limit'''
+            data2={}
+            data[key1]=value1
+            with open('datatest.json','w') as fp:
+                json.dump(data2,fp)
+            size2=os.path.getsize('datatest.json')
+            '''check size of data never exceed after adding new data'''
+            if size+size2<1073741824:
+                os.remove("datatest.json")
+                with open(path,'w') as fp:
+                    json.dump(data,fp)
+            else:
+                print("data entry unsuccessful!\n New entry is exceeding data restriction.")   
         else:
             print("size of file is exceeding 1 GB")
 
