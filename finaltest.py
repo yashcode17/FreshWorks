@@ -5,7 +5,7 @@ path=''
 
 
 def create_directory(self,dir_path=None):
-    '''set directory path is not provided by user'''
+    '''set directory path if not provided by user'''
     if dir_path==None:
         dir_path="C:\\"
     
