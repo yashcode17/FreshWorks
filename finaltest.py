@@ -3,8 +3,7 @@ import os
 
 path=''
 
-
-def create_directory(self,dir_path=None):
+def create_directory(dir_path=None):
     '''set directory path is not provided by user'''
     if dir_path==None:
         dir_path="C:\\"
@@ -31,7 +30,7 @@ def create_directory(self,dir_path=None):
         print(error)     
     
 
-def add_data(self,key1,value1):
+def add_data(key1,value1):
     '''check current key is presnt in datastore or not'''
     with open(path,'r') as fp:
         data=json.load(fp)
@@ -62,7 +61,7 @@ def add_data(self,key1,value1):
             print("size of file is exceeding 1 GB")
 
 
-def read_data(self,key1):
+def read_data(key1):
     '''load json file'''
     with open(path,'r') as fp:
         data=json.load(fp)
@@ -72,11 +71,11 @@ def read_data(self,key1):
         print("key doesn't exist")
     
 
-def delete_data(self,key1):
+def delete_data(key1):
     with open(path,'r') as fp:
         data=json.load(fp)
     if key1 in data:
-        data.pop('hours', None)
+        data.pop(key1, None)
         with open(path, 'w') as data_file:
             json.dump(data, data_file)  
     else:
